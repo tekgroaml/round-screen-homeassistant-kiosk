@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Orbit Home · Climate</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="dial" aria-label="Climate dashboard">
+    <div class="grain" aria-hidden="true"></div>
+    <svg class="scale" viewBox="0 0 480 480" aria-hidden="true">
+      <defs><linearGradient id="heat"><stop stop-color="#779fa8"/><stop offset="1" stop-color="#f5b575"/></linearGradient></defs>
+      <circle class="outer-ring" cx="240" cy="240" r="216"/>
+      <g id="ticks"></g>
+      <circle class="track" cx="240" cy="240" r="184" transform="rotate(135 240 240)"/>
+      <circle id="progress" cx="240" cy="240" r="184" transform="rotate(135 240 240)"/>
+      <circle id="marker" r="8"/>
+    </svg>
+    <header><span class="brand">ORBIT</span><span class="room">LIVING ROOM</span></header>
+    <div class="weather"><span id="weather-icon" aria-hidden="true">☀</span><span id="weather-label">Clear</span></div>
+    <div id="control" role="slider" tabindex="0" aria-label="Target temperature" aria-valuemin="16" aria-valuemax="30" aria-valuenow="22" aria-valuetext="22 degrees Celsius">
+      <span class="eyebrow">TARGET TEMPERATURE</span>
+      <div class="temperature"><span id="setpoint">22.0</span><span class="degree">°</span></div>
+      <span class="ambient">ROOM <strong id="ambient">—</strong> °C</span>
+    </div>
+    <div class="humidity"><span class="drop" aria-hidden="true">◈</span> <strong id="humidity">—</strong><span>% HUMIDITY</span></div>
+    <time id="clock">--:--</time>
+    <div id="status" role="status" aria-live="polite">CONNECTING</div>
+    <div class="limits" aria-hidden="true"><span>16°</span><span>30°</span></div>
+  </main>
+</body>
+</html>
