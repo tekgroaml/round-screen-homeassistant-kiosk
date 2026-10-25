@@ -1,0 +1,15 @@
+{
+  "config_version": 1,
+  "room": "LIVING ROOM",
+  "safe_inset_percent": 3,
+  "homeassistant": {
+    "url": "https://homeassistant.local:8123",
+    "token_file": "./ha-token",
+    "entities": {
+      "temperature": "sensor.living_room_temperature",
+      "humidity": "sensor.living_room_humidity",
+      "climate": "climate.living_room",
+      "weather": "weather.home"
+    }
+  }
+}

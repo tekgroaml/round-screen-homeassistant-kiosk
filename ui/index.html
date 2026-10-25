@@ -19,12 +19,16 @@
       <circle id="progress" cx="240" cy="240" r="184" transform="rotate(135 240 240)"/>
       <circle id="marker" r="8"/>
     </svg>
-    <header><span class="brand">ORBIT</span><span class="room">LIVING ROOM</span></header>
+    <header><span class="brand">ORBIT</span><span id="room" class="room">LIVING ROOM</span></header>
     <div class="weather"><span id="weather-icon" aria-hidden="true">☀</span><span id="weather-label">Clear</span></div>
     <div id="control" role="slider" tabindex="0" aria-label="Target temperature" aria-valuemin="16" aria-valuemax="30" aria-valuenow="22" aria-valuetext="22 degrees Celsius">
       <span class="eyebrow">TARGET TEMPERATURE</span>
       <div class="temperature"><span id="setpoint">22.0</span><span class="degree">°</span></div>
       <span class="ambient">ROOM <strong id="ambient">—</strong> °C</span>
+    </div>
+    <div class="adjustments" aria-label="Adjust target temperature">
+      <button id="decrease" type="button" aria-label="Decrease target by 0.5 degrees">−</button>
+      <button id="increase" type="button" aria-label="Increase target by 0.5 degrees">+</button>
     </div>
     <div class="humidity"><span class="drop" aria-hidden="true">◈</span> <strong id="humidity">—</strong><span>% HUMIDITY</span></div>
     <time id="clock">--:--</time>

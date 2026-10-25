@@ -1,8 +1,8 @@
-:root { color-scheme: dark; font-family: "DejaVu Sans", Arial, sans-serif; background: #000; color: #f2ece3; }
+:root { color-scheme: dark; font-family: "DejaVu Sans", Arial, sans-serif; background: #000; color: #f2ece3; --unit: 1vmin; }
 * { box-sizing: border-box; cursor: none !important; }
 html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
 body { display: grid; place-items: center; }
-.dial { position: relative; width: min(100vw,100vh); height: min(100vw,100vh); border-radius: 50%; overflow: hidden; clip-path: circle(50% at 50% 50%); isolation: isolate; background: radial-gradient(ellipse at 35% 20%, #26323a 0%, #151e26 42%, #090e13 77%); user-select: none; touch-action: none; }
+.dial { position: relative; width: 94vmin; height: 94vmin; border-radius: 50%; overflow: hidden; clip-path: circle(50% at 50% 50%); isolation: isolate; background: radial-gradient(ellipse at 35% 20%, #26323a 0%, #151e26 42%, #090e13 77%); user-select: none; -webkit-user-select: none; touch-action: none; }
 .grain { position: absolute; inset: 0; opacity: .16; background: repeating-linear-gradient(0deg, transparent, transparent 2px, #26323a 3px); pointer-events: none; }
 .scale { width: 100%; height: 100%; position: absolute; inset: 0; pointer-events: none; }
 .outer-ring { fill: none; stroke: #41505a; stroke-width: 1; opacity: .6; }
@@ -12,23 +12,30 @@ body { display: grid; place-items: center; }
 .track { stroke: #34414a; stroke-dasharray: 867.08 1156.11; }
 #progress { stroke: url(#heat); }
 #marker { fill: #ffcc98; stroke: #18232a; stroke-width: 3; }
+.interacting #marker { fill: #fff; }
 header { position: absolute; top: 16%; left: 25%; width: 50%; text-align: center; display: flex; flex-direction: column; gap: .35em; }
-.brand { font-size: min(3vw,3vh); letter-spacing: .4em; font-weight: 700; padding-left: .4em; color: #c8b49c; }
-.room { font-size: min(1.7vw,1.7vh); letter-spacing: .23em; color: #93a0a9; }
-.weather { position: absolute; top: 27%; left: 27%; width: 46%; display: flex; align-items: center; justify-content: center; gap: .5em; font-size: min(2.5vw,2.5vh); color: #bcc8cc; }
+.brand { font-size: calc(var(--unit)*3.4); letter-spacing: .4em; font-weight: 700; padding-left: .4em; color: #c8b49c; }
+.room { font-size: calc(var(--unit)*2.3); letter-spacing: .12em; color: #93a0a9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.weather { position: absolute; top: 27%; left: 27%; width: 46%; display: flex; align-items: center; justify-content: center; gap: .5em; font-size: calc(var(--unit)*3); color: #bcc8cc; }
 #weather-icon { color: #f0c38d; font-size: 1.5em; }
-#control { position: absolute; inset: 35% 22% 37%; display: flex; flex-direction: column; align-items: center; justify-content: center; outline: none; }
+#weather-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#control { position: absolute; inset: 36% 21% 40%; display: flex; flex-direction: column; align-items: center; justify-content: center; outline: none; }
 #control:focus-visible { border-radius: 30%; box-shadow: 0 0 0 2px #f0c38d; }
-.eyebrow { font-size: min(1.65vw,1.65vh); letter-spacing: .15em; color: #9eabb2; }
-.temperature { font-size: min(16vw,16vh); font-weight: 300; line-height: 1.2; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: calc(var(--unit)*2.3); letter-spacing: .08em; color: #9eabb2; }
+.temperature { font-size: calc(var(--unit)*16); font-weight: 300; line-height: 1.2; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
 .degree { font-size: .5em; vertical-align: top; line-height: 1.9; padding-left: .1em; color: #dcc8b1; }
-.ambient { font-size: min(2.2vw,2.2vh); color: #93a0a9; letter-spacing: .08em; }
+.ambient { font-size: calc(var(--unit)*2.7); color: #93a0a9; letter-spacing: .06em; }
 .ambient strong { color: #d4dde0; font-weight: 400; }
-.humidity { position: absolute; top: 68%; left: 27%; width: 46%; display: flex; align-items: baseline; justify-content: center; gap: .4em; font-size: min(2vw,2vh); letter-spacing: .05em; color: #98a8b2; }
-.humidity strong { font-size: 1.6em; color: #cfdbdf; font-weight: 400; }
+.adjustments { position: absolute; top: 62%; left: 28%; width: 44%; display: flex; justify-content: space-between; }
+.adjustments button { appearance: none; -webkit-appearance: none; width: clamp(44px,calc(var(--unit)*11),72px); height: clamp(44px,calc(var(--unit)*11),72px); padding: 0; border: 1px solid #52606a; border-radius: 50%; background: #25333e; color: #f7d2a6; font: inherit; font-size: calc(var(--unit)*6); touch-action: manipulation; }
+.adjustments button:active { background: #52606a; transform: scale(.95); }
+.adjustments button:disabled { opacity: .35; }
+.adjustments button:focus-visible { outline: 2px solid #f0c38d; outline-offset: 3px; }
+.humidity { position: absolute; top: 75%; left: 25%; width: 50%; display: flex; align-items: baseline; justify-content: center; gap: .4em; font-size: calc(var(--unit)*2.3); letter-spacing: .04em; color: #98a8b2; }
+.humidity strong { font-size: 1.4em; color: #cfdbdf; font-weight: 400; }
 .drop { color: #8dbbc6; }
-#clock { position: absolute; top: 77%; left: 30%; width: 40%; text-align: center; font-size: min(4vw,4vh); letter-spacing: .15em; font-variant-numeric: tabular-nums; }
-#status { position: absolute; top: 85%; left: 28%; width: 44%; text-align: center; font-size: min(1.5vw,1.5vh); letter-spacing: .08em; color: #86b5a3; white-space: nowrap; }
+#clock { position: absolute; top: 82%; left: 30%; width: 40%; text-align: center; font-size: calc(var(--unit)*4.2); letter-spacing: .15em; font-variant-numeric: tabular-nums; }
+#status { position: absolute; top: 89%; left: 28%; width: 44%; text-align: center; font-size: calc(var(--unit)*2.1); letter-spacing: .04em; color: #86b5a3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #status.error { color: #ff9a83; }
-.limits { position: absolute; top: 78%; left: 20%; width: 60%; display: flex; justify-content: space-between; font-size: min(2.4vw,2.4vh); color: #84929a; pointer-events: none; }
+.limits { position: absolute; top: 78%; left: 17%; width: 66%; display: flex; justify-content: space-between; font-size: calc(var(--unit)*2.7); color: #84929a; pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) { #marker { transition: fill .2s; } }

@@ -1,0 +1,98 @@
+{
+  "manifest_version": 1,
+  "contract_version": 1,
+  "id": "single-round-homeassistant-kiosk",
+  "name": "Orbit · 单圆屏触摸家居看板",
+  "version": "0.3.0",
+  "release_status": "preview",
+  "topology": "single-panel",
+  "panel_count": 1,
+  "command": {
+    "entrypoint": [
+      "./app"
+    ]
+  },
+  "default_view": "climate",
+  "views": [
+    {
+      "id": "climate",
+      "data_sources": [
+        "demo",
+        "live"
+      ]
+    }
+  ],
+  "content_modes": [],
+  "layouts": [],
+  "capabilities": {
+    "multi_instance": true,
+    "read_only": false
+  },
+  "runtime": {
+    "platform": "linux",
+    "desktop": "Wayland with GTK layer-shell (Raspberry Pi OS Bookworm/labwc)",
+    "dependencies": [
+      "python3",
+      "python3-gi",
+      "python3-gi-cairo",
+      "python3-cairo",
+      "gir1.2-gtk-3.0",
+      "gir1.2-gtklayershell-0.1",
+      "wlr-randr"
+    ],
+    "output_targeting_required": true,
+    "output_scale": 1,
+    "output_transform": "normal",
+    "renderer": "python-gtk-cairo"
+  },
+  "profiles": [
+    {
+      "id": "round-touch",
+      "topology": "single-panel",
+      "panel_count": 1,
+      "panels": [
+        {
+          "panel": 1,
+          "shape": "round",
+          "input": "touch",
+          "min_viewport": {
+            "width": 360,
+            "height": 360
+          }
+        }
+      ],
+      "views": [
+        "climate"
+      ],
+      "data_sources": [
+        "demo",
+        "live"
+      ],
+      "content_modes": [],
+      "layout_ids": []
+    }
+  ],
+  "verification": {
+    "status": "800x800-user-verified-preview",
+    "hardware_verified": true,
+    "notes": [
+      "Native Python GTK/Cairo renderer; no WebKit, browser, local HTTP server, pip or Node is required.",
+      "Square canvas >=360x360 at scale 1 and normal transform; size alone is not an SKU compatibility guarantee.",
+      "Touch event counters are observations; verify the physical panel and input positions.",
+      "Legacy web preview remains separate and is not launched by ./app."
+    ],
+    "tested_configurations": [
+      {
+        "system": "Raspberry Pi OS Bookworm aarch64, labwc/Wayland",
+        "mode": "800x800@60",
+        "port": 2,
+        "shape": "round",
+        "input": "touch",
+        "data_source": "demo",
+        "result": "Native drawing/window binding confirmed by runtime; user confirmed complete image, step buttons and dial drag.",
+        "scope": "One tested panel configuration; does not certify all sizes, live HA or all devices."
+      }
+    ]
+  },
+  "repository_url": "https://github.com/tekgroaml/round-screen-homeassistant-kiosk"
+}
